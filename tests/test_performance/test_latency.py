@@ -1,9 +1,10 @@
 from unittest.mock import MagicMock, patch
 import tempfile
 import numpy as np  
-import  unittest
+import unittest
+import time
+from voice_assistant.utils.performance import PerformanceMonitor
 
-@unittest.skip("Performance tests require PerformanceMonitor class - skip for now")
 class TestLatencyMeasurement(unittest.TestCase):
     """Tests de mesure de latence"""
     

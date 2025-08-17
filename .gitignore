@@ -1,0 +1,57 @@
+# Fichiers et dossiers de modèles volumineux
+*.gguf
+*.onnx
+*.onnx.json
+*.bin
+*.pt
+*.pth
+models/
+llm_models/
+vectorstore_faiss_md/
+
+# Fichiers audio temporaires
+*.wav
+*.mp3
+output/
+sounds/result.mp3
+
+# Dossiers temporaires
+__pycache__/
+.venv/
+venv/
+env/
+temp/
+tmp/
+
+# Piper et ses dépendances
+piper/
+
+# Fichiers de configuration spécifiques à l'utilisateur
+.env
+*.local.yaml
+*.local.yml
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Fichiers de logs
+*.log
+logs/
+
+# Environnements virtuels Python
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+.python-version
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Fichiers IDE
+.idea/
+.vscode/
+*.swp
+*.swo 

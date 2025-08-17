@@ -1,0 +1,145 @@
+# Configuration par défaut pour l'assistant vocal
+
+# Paramètres généraux
+general:
+  device_type: auto  # auto, cuda, cpu
+  temp_dir: null  # Si null, un répertoire temporaire sera créé automatiquement
+  output_dir: "output"
+  welcome_message: "Bonjour, je suis votre assistant vocal RAG, prêt à vous aider. Comment puis-je vous assister ?"
+
+# Paramètres audio
+audio:
+  format: paInt16
+  channels: 1
+  rate: 16000
+  chunk: 2048
+  volume_norm: 0.7
+  vad_max_record_seconds: 15
+  vad_silence_threshold_chunk: 0.002
+  vad_min_silent_chunks_to_stop: 2.0  # En secondes, sera converti en chunks
+  vad_min_speech_chunks_before_stop_active: 0.5  # En secondes, sera converti en chunks
+  overall_silence_threshold_rms: 0.005
+
+# Paramètres STT (Speech-to-Text)
+stt:
+  model_size: "small"
+  compute_type: auto  # auto, float16, float32
+  language: "fr"
+  beam_size: 3
+  best_of: 3
+  temperature: 0.0
+  compression_ratio_threshold: 2.4
+  log_prob_threshold: -1.0
+  no_speech_threshold: 0.3
+  condition_on_previous_text: true
+  vad_filter: false
+
+# Paramètres TTS (Text-to-Speech)
+tts:
+  piper_exe: "piper/piper.exe"
+  model: "models/fr_FR-upmc-medium.onnx"
+  config: "models/fr_FR-upmc-medium.onnx.json"
+  length_scale: 1.0
+
+# Paramètres LLM
+llm:
+  model_path: "llm_models/gemma-2b-it.Q4_K_M.gguf"
+  n_batch: 256
+  n_ctx: 1024
+  temperature: 0.1
+  max_tokens: 512
+  top_p: 0.9
+  repeat_penalty: 1.1
+  verbose: false
+  streaming: true
+
+# Paramètres RAG
+rag:
+  embedding_model: "paraphrase-multilingual-MiniLM-L12-v2"
+  vectorstore_dir: "vectorstore_faiss_md"
+  chunk_size: 700
+  chunk_overlap: 70
+  retriever_k: 2
+  doc_path: "doc_resolutions.md"
+
+# Sons système
+sounds:
+  thinking_sound: "sounds/model_is_thinking.mp3"
+  result_sound: "sounds/result.mp3"
+
+# Réponses prédéfinies
+responses:
+  reassuring:
+    - "T'inquiète, ça arrive souvent."
+    - "Je suis là pour t'aider."
+    - "Pas de panique, on va gérer."
+  direct:
+    - "Hop, je te montre la manip."
+    - "Voici ce qu'il faut faire."
+    - "Allons droit au but."
+  friendly:
+    - "Super question ! Expliquons ça."
+    - "Ah, bonne question, aidons-nous."
+    - "Bien sûr, je comprends."
+  loading:
+    - "Je réfléchis à la meilleure façon..."
+    - "Un instant, je prépare une réponse..."
+    - "Je consulte mes ressources..."
+  thinking:
+    - "Je traite ta demande..."
+    - "J'analyse la situation..."
+    - "Je cherche la meilleure approche..."
+
+# Réponses communes
+common_responses:
+  bonjour: "Bonjour! Comment puis-je vous aider aujourd'hui ?"
+  salut: "Bonjour! Comment puis-je vous aider aujourd'hui ?"
+  "ça va": "Je vais bien, merci. Comment puis-je vous aider ?"
+  "comment vas-tu": "Je vais bien, merci. Comment puis-je vous aider ?"
+  coordonnées: "Nos coordonnées : Tél: 0123456789, Email: contact@example.com"
+  contact: "Nos coordonnées : Tél: 0123456789, Email: contact@example.com"
+  horaires: "Nous sommes ouverts du lundi au vendredi de 9h à 18h."
+  services: "Nous proposons: consultation technique, dépannage, installation, maintenance."
+  merci: "De rien ! Si vous avez d'autres questions, n'hésitez pas."
+  "au revoir": "Au revoir et bonne journée !"
+  "d'accord": "Entendu."
+  ok: "Compris."
+  "c'est bien": "Parfait alors !"
+  "oh c'est bien": "Ravi que cela vous plaise."
+
+# Messages système
+messages:
+  no_speech: "Je n'ai pas bien entendu. Pourriez-vous répéter plus clairement s'il vous plaît ?"
+  empty_transcription: "Je n'ai pas réussi à comprendre votre demande. Pouvez-vous reformuler ?"
+  llm_error: "Désolé, une erreur interne est survenue lors de la génération de la réponse."
+  rag_info_not_found: "Je n'ai pas trouvé d'information spécifique à ce sujet dans ma base de connaissances. Pourriez-vous reformuler ou me poser une autre question ?"
+
+# Mots-clés pour la détection de problèmes
+problem_detection:
+  fuzzy_match_threshold: 80
+  generic_problem_patterns:
+    - "(problème|souci|difficulté|erreur|panne)"
+    - "ne\\s+(marche|fonctionne)\\s+(pas|plus|guère|correctement|bien)"
+    - "cassé[e]?"
+    - "endommagé[e]?"
+    - "déconne"
+    - "bug"
+    - "plante"
+    - "bloqué[e]?"
+    - "pas\\s+(normal|bon|correct)"
+    - "affiche\\s+erreur"
+    - "message\\s+d'erreur"
+    - "j'ai\\s+un\\s+problème"
+    - "j'ai\\s+un\\s+souci"
+  device_keywords:
+    modem: ["modem", "box", "routeur"]
+    imprimante: ["imprimante", "impriment", "imprimonte", "scanner", "impact"]
+    internet: ["internet", "connexion", "connection", "web"]
+    wifi: ["wifi", "wi-fi"]
+    tv: ["télévision", "télé", "tv", "décodeur", "decodeur"]
+    cartouche: ["cartouche", "encre", "toner"]
+    logiciel: ["logiciel", "application", "programme"]
+    ordinateur: ["ordinateur", "pc", "portable"]
+    mobile: ["mobile", "téléphone", "smartphone"]
+    katun: ["katun"]
+    kasa: ["kasa"] 

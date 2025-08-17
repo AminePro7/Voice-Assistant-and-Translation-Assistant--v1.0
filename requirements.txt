@@ -1,0 +1,21 @@
+# Dépendances principales
+pyaudio>=0.2.13
+numpy>=1.24.0
+pyyaml>=6.0
+langchain>=0.1.0
+langchain-community>=0.0.10
+langchain-huggingface>=0.0.1
+faiss-cpu>=1.7.4  # Utiliser faiss-gpu pour l'accélération GPU
+openai-whisper>=20231117
+pygame>=2.5.0
+torch>=2.0.0
+transformers>=4.30.0
+sentence-transformers>=2.2.2
+llama-cpp-python>=0.2.0
+argostranslate>=1.9.0
+
+# Utilitaires
+soundfile>=0.12.1
+librosa>=0.10.0
+matplotlib>=3.7.0
+tqdm>=4.65.0 
